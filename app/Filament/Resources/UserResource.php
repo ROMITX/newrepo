@@ -3,15 +3,12 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\UserResource\Pages;
-use App\Filament\Resources\UserResource\RelationManagers;
 use App\Models\User;
 use Filament\Forms;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class UserResource extends Resource
 {
@@ -50,10 +47,7 @@ class UserResource extends Resource
                     ->dateTime(),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime(),
-                Tables\Columns\TextColumn::make('user_id'),
-                Tables\Columns\TextColumn::make('status'),
-                Tables\Columns\TextColumn::make('attendance_date')
-                    ->date(),
+                    
             ])
             ->filters([
                 //
@@ -70,7 +64,7 @@ class UserResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            UserResource\RelationManagers\AttendancesRelationManager::class
         ];
     }
     

@@ -3,8 +3,9 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\AttendanceResource\Pages;
-use App\Filament\Resources\AttendanceResource\RelationManagers;
+
 use App\Models\Attendance;
+use Closure;
 use Filament\Forms;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
@@ -29,7 +30,9 @@ class AttendanceResource extends Resource
             
             
 
-            Forms\Components\DatePicker::make('attendance_date'),
+            Forms\Components\DatePicker::make('attendance_date')
+            ->required(),
+   
             Forms\Components\Select::make('status')
                 ->options([
                     'present' => 'present',
